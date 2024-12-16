@@ -1,0 +1,136 @@
+/* *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+body{
+    background-color: rgb(99, 161, 186);
+    color: aliceblue;
+}
+
+main{
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box{
+    height: 500px;
+    width: 600px;
+    background-color: white;
+    color: black;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+
+#item{
+    width: 100%;
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+    border: none;
+    outline: none;
+    box-shadow: 0px 0px 2px rgb(113, 107, 107);
+    border-radius: 8px;
+    display: block;
+
+
+}
+
+#to-do-list{
+    list-style: none;
+    margin-top: 10px;
+    background-color: rgb(147, 140, 140);
+    color: azure;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#to-do-list li {
+ position: relative;
+ text-decoration: none;
+}
+
+#to-do-list li  i{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.done {
+    text-decoration: line-through;
+    color: black;
+    background-color: #95a5a6 !important;
+} */
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+main {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3498db;
+}
+
+.box {
+    width: 700px;
+    min-height: 500px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+#item {
+    padding: 10px;
+    font-size: 20px;
+    width: 100%;
+    border: 0;
+    outline: 0;
+    display: block;
+    font-weight: bold;
+    box-shadow: 0px 0px 2px grey;
+}
+
+#to-do-list {
+    margin-top: 20px;
+    list-style: none;
+}
+
+#to-do-list li {
+    position: relative;
+    background-color: #2c3e50;
+    color: white;
+    padding: 10px;
+    border-radius: 2px;
+    padding-right: 30px;
+    text-align: justify;
+    margin-top: 10px;
+    user-select: none;
+}
+
+#to-do-list li i {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.done {
+    text-decoration: line-through;
+    color: black;
+    background-color: #95a5a6 !important;
+}
