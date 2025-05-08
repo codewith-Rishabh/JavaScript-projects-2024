@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Image & Drag Text</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .image-container {
+            position: relative;
+            width: 500px;
+            height: 300px;
+            border: 2px solid #000;
+            overflow: hidden;
+            display: none; /* Hide until image is uploaded */
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #draggable-text {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 5px;
+            cursor: grab;
+            font-size: 24px;
+            user-select: none;
+            border: 1px dashed black;
+        }
+
+        .controls {
+            margin-top: 10px;
+            display: none; /* Hide until image is uploaded */
+        }
+
+        .upload-section {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Upload Image Section -->
+        <div class="upload-section">
+            <input type="file" id="image-upload" accept="image/*">
+        </div>
+
+        <!-- Image and Draggable Text -->
+        <div class="image-container" id="image-container">
+            <img id="uploaded-image" src="" alt="Uploaded Image">
+            <div id="draggable-text" contenteditable="true">Drag Me</div>
+        </div>
+
+        <!-- Font Size Control -->
+        <div class="controls">
+            <label for="font-size">Font Size:</label>
+            <input type="range" id="font-size" min="10" max="100" value="24">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const imageUpload = document.getElementById("image-upload");
+            const imageContainer = document.getElementById("image-container");
+            const uploadedImage = document.getElementById("uploaded-image");
+            const draggableText = document.getElementById("draggable-text");
+            const fontSizeInput = document.getElementById("font-size");
+            const controls = document.querySelector(".controls");
+
+            let isDragging = false;
+            let offsetX, offsetY;
+
+            // Handle Image Upload
+            imageUpload.addEventListener("change", (event) => {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        uploadedImage.src = e.target.result;
+                        imageContainer.style.display = "block";
+                        controls.style.display = "block"; // Show controls
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Dragging logic
+            draggableText.addEventListener("mousedown", (e) => {
+                isDragging = true;
+                offsetX = e.clientX - draggableText.offsetLeft;
+                offsetY = e.clientY - draggableText.offsetTop;
+                draggableText.style.cursor = "grabbing";
+            });
+
+            document.addEventListener("mousemove", (e) => {
+                if (isDragging) {
+                    draggableText.style.left = ${e.clientX - offsetX}px;
+                    draggableText.style.top = ${e.clientY - offsetY}px;
+                }
+            });
+
+            document.addEventListener("mouseup", () => {
+                isDragging = false;
+                draggableText.style.cursor = "grab";
+            });
+
+            // Font size changing logic
+            fontSizeInput.addEventListener("input", (e) => {
+                draggableText.style.fontSize = ${e.target.value}px;
+            });
+        });
+    </script>
+
+</body>
+</html>
